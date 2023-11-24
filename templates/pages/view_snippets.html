@@ -38,12 +38,14 @@
                         <td scope="row">{{ snp.id }}</td>
                         <td>
                             <a href="{% url 'snippet-detail' snp.id %}">{{ snp.name }}</a>
+                            {% if request.user == snp.user %}
                             <a href="{% url 'snippet-delete' snp.id %}">
                                 <l style="color: red" class="fa-sharp fa-solid fa-trash"></l>
                             </a>
                             <a href="{% url 'snippet-edit' snp.id %}">
                                 <l style="color: red" class="fas fa-edit"></l>
                             </a>
+                            {% endif %}
                         </td>
                         <td>{{ snp.creation_date }}</td>
                         <td>{{ snp.user.username }}</td>
