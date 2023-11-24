@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from MainApp.models import Snippet
 from MainApp.forms import SnippetForm
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 
 
@@ -10,7 +11,7 @@ def index_page(request):
     context = {'pagename': 'PythonBin'}
     return render(request, 'pages/index.html', context)
 
-
+@login_required
 def add_snippet_page(request):
     if request.method == 'GET': # Получаем чистую форму
         form = SnippetForm()
@@ -27,7 +28,7 @@ def add_snippet_page(request):
             if request.user.is_authenticated:
                 snippet.user = request.user
                 snippet.save()
-            form.save()
+            # form.save()
             return redirect('snippets-list')
         return render(request, 'pages/add_snippet.html', {'form': form})
 
