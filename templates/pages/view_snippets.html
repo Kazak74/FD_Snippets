@@ -29,6 +29,7 @@
                         <th scope="col">Название</th>
                         <th scope="col">Дата создания</th>
                         <th scope="col">Пользователь</th>
+                        <th scope="col">Публичный</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +47,11 @@
                         </td>
                         <td>{{ snp.creation_date }}</td>
                         <td>{{ snp.user.username }}</td>
+                        {% if snp.public %}
+                        <td>Публичный</td>
+                        {% else %}
+                        <td>Приватный</td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>
