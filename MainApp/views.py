@@ -46,7 +46,9 @@ def snippets_page(request):
     
     context = {
         'pagename': 'Просмотр сниппетов',
-        'snippets': snippets
+        'snippets': snippets,
+        'count': snippets.count() # only public
+        # Snippet.objects.filter().count(), - all snippets in db
         }
     return render(request, 'pages/view_snippets.html', context)
     
